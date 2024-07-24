@@ -1,0 +1,483 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!--
+  <script src="./resources/jsapi" type="text/javascript"></script>
+  <script type="text/javascript" async>google.load("jquery", "1.3.2");</script>
+ -->
+
+<style type="text/css">
+  @font-face {
+   font-family: 'Avenir Book';
+   src: url("./fonts/Avenir_Book.ttf"); /* File to be stored at your site */
+   }
+
+  body {
+    font-family: "Avenir Book", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight:300;
+    font-size:14px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+  }
+  /* h1 {
+    font-weight:300;
+  } */
+  h1 {
+    font-weight:300;
+  display: flex;
+  align-items: center; /* 保证图片和文字垂直居中对齐 */
+  }
+
+  .title  .title-image {
+    height: 1em; /* 使用 em 单位使图片高度与文字大小相匹配 */
+  }
+  h2 {
+    font-weight:300;
+  }
+
+  p {
+    font-weight:300;
+    line-height: 1.4;
+  }
+
+  code {
+    font-size: 0.8rem;
+    margin: 0 0.2rem;
+    padding: 0.5rem 0.8rem;
+    white-space: nowrap;
+    background: #efefef;
+    border: 1px solid #d3d3d3;
+    color: #000000;
+    border-radius: 3px;
+  }
+
+  pre > code {
+    display: block;
+    white-space: pre;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+  }
+
+  pre.prettyprint > code {
+    border: none;
+  }
+
+  .image-container {
+    display: flex; /* 使用flexbox布局 */
+    justify-content: space-around; /* 图片间隔均匀分布 */
+  }
+  .image-container img {
+    height: 300px; /* 控制所有图片的高度 */
+    width: auto; /* 宽度自适应，保持图片比例 */
+  }
+  .container {
+        display: flex;
+        align-items: center;
+        justify-content: center
+  }
+  .image {
+        flex-basis: 40%
+  }
+  .text {
+        padding-left: 20px;
+        padding-right: 20px;
+  }
+
+  .disclaimerbox {
+    background-color: #eee;
+    border: 1px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+    padding: 20px;
+  }
+
+  video.header-vid {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+  }
+
+  img.header-img {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+  }
+
+  img.rounded {
+    border: 0px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+
+  }
+
+  a:link,a:visited
+  {
+    color: #1367a7;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #208799;
+  }
+
+  td.dl-link {
+    height: 160px;
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+            0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+            5px 5px 0 0px #fff, /* The second layer */
+            5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+            10px 10px 0 0px #fff, /* The third layer */
+            10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+            15px 15px 0 0px #fff, /* The fourth layer */
+            15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+            20px 20px 0 0px #fff, /* The fifth layer */
+            20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+            25px 25px 0 0px #fff, /* The fifth layer */
+            25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+    margin-left: 10px;
+    margin-right: 45px;
+  }
+
+
+  .layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+            0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+            5px 5px 0 0px #fff, /* The second layer */
+            5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+            10px 10px 0 0px #fff, /* The third layer */
+            10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 30px;
+    margin-bottom: 5px;
+  }
+
+  .vert-cent {
+    position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+  }
+
+  hr
+  {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  }
+
+  .right-align {
+    text-align: right;
+  }
+
+  figure {
+    text-align: center;
+  }
+
+  figcaption {
+    font-style: italic;
+    margin-top: 5px;
+  }
+</style>
+
+	<title>AutoRG-Brain: Grounded Report Generation for Brain MRI</title>
+</head>
+
+<body>
+	<br>
+	<center>
+	<!-- <span style="font-size:38px;"> <img src="resources/logo.png" alt="Description of Image" style="height: 45px; vertical-align: text-top;">AutoRG-Brain:~Grounded Report Generation for Brain MRI</span><br><br><br>
+   -->
+   <span style="font-size:38px;"> AutoRG-Brain: Grounded Report Generation for Brain MRI</span><br><br><br>
+  </center>
+  </table>
+  
+	<table align="center" width="640px">
+            <tbody><tr>
+      
+              <td align="center" width="160px">
+              <center>
+                <span style="font-size:18px"><a href="https://ljy19970415.github.io/">Jiayu Lei</a><sup>1,2</sup></span>
+                </center>
+              </td>
+              <td align="center" width="160px">
+                <center>
+                  <span style="font-size:18px"><a href="https://xiaoman-zhang.github.io/">Xiaoman Zhang</a><sup>2,3</sup></span>
+                  </center>
+                  </td>
+              <td align="center" width="160px">
+              <center>
+                <span style="font-size:18px"><a href="https://chaoyi-wu.github.io/">Chaoyi Wu</a><sup>2,3</sup></span>
+                </center>
+              </td>
+              <td align="center" width="160px">
+                <center>
+                  <span style="font-size:18px">Lisong Dai<sup>3,4</sup></span>
+                  </center>
+                  </td>
+          </tr>
+        </tbody></table><br>
+
+    <table align="center" width="780px">
+            <tbody><tr>
+                <td align="center" width="150px">
+              <center>
+                <span style="font-size:18px"><a href="https://mediabrain.sjtu.edu.cn/yazhang/">Ya Zhang</a><sup>2,3</sup></span>
+                </center>
+              </td>
+              <td align="center" width="150px">
+                <center>
+                  <span style="font-size:18px"><a href="http://staff.ustc.edu.cn/~yanyongz/">Yanyong Zhang</a><sup>1</sup></span>
+                  </center>
+                </td>
+                    <td align="center" width="180px">
+              <center>
+                <span style="font-size:18px"><a href="https://mediabrain.sjtu.edu.cn/">Yanfeng Wang</a><sup>2,3,<img class="round" style="width:20px" src="./resources/corresponding_fig.png"></sup></span>
+                </center>
+              </td>
+              <td align="center" width="150px">
+              <center>
+                    <span style="font-size:18px"><a href="https://weidixie.github.io/">Weidi Xie</a><sup>2,3,<img class="round" style="width:20px" src="./resources/corresponding_fig.png"></sup></span>
+                  </td>
+                  <td align="center" width="150px">
+                    <center>
+                          <span style="font-size:18px">Yuehua Li<sup>3,4<img class="round" style="width:20px" src="./resources/corresponding_fig.png"></sup></span>
+                  </td>
+                  
+        </tr></tbody></table><br>
+
+
+	  <table align="center" width="650px">
+
+            <tbody><tr>
+                    <td align="center" width="50px">
+              <center>
+                    <span style="font-size:14px"></span>
+                </center>
+                </td>
+                    <td align="center" width="300px">
+              <center>
+                    <span style="font-size:16px"><sup>1</sup>University of Science and Technology of China</span>
+                </center>
+                </td>
+                <br>
+                    <td align="center" width="300px">
+              <center>
+                    <span style="font-size:16px"><sup>2</sup>Shanghai AI Laboratory</span>
+                </center>
+                </td>
+                <td align="center" width="300px">
+                  <center>
+                        <span style="font-size:16px"><sup>3</sup>Shanghai Jiao Tong University</span>
+                    </center>
+                    </td>
+                    <br>
+                    <td align="center" width="300px">
+                      <center>
+                            <span style="font-size:16px"><sup>4</sup>Shanghai Sixth People's Hospital Affiliated to Shanghai Jiao Tong University</span>
+                        </center>
+                        </td>
+        </tr></tbody></table>
+
+        <br>
+
+        <table style="width: 800px; border-collapse: collapse;">
+          <tr>
+            <td style="width: 20%; text-align: center;">
+              <a href='https://github.com/ljy19970415/AutoRG-Brain_Annotation_Platform'>
+                <img src='https://img.shields.io/badge/Human_Evaluation_Platform-Code-blueviolet' alt='website URL'>
+              </a>
+            </td>
+            <td style="width: 20%; text-align: center;">
+                <img src='https://img.shields.io/badge/AutoRG_Brain-Code-blueviolet' alt='website URL'>
+            </td>
+            <td style="width: 20%; text-align: center;">
+                <img src='https://img.shields.io/badge/AutoRG_Brain-Model-blue' alt='Model'>
+            </td>
+            <td style="width: 20%; text-align: center;">
+                <img src='https://img.shields.io/badge/Dataset-RadGenome_Brain_MRI-green' alt='RadGenome-Brain-MRI'>
+            </td>
+            <td style="width: 20%; text-align: center;">
+              <a href='https://arxiv.org/abs/2407.16684'>
+                <img src='https://img.shields.io/badge/Paper-PDF-red' alt='Paper PDF'>
+              </a>
+            </td>
+          </tr>
+        </table>
+     
+        
+      <br><hr>
+      <center><h2> Abstract </h2> </center>
+      <p style="text-align:justify; text-justify:inter-ideograph;">
+            <left>
+              Radiologists are tasked with interpreting a large number of images in a daily base, with the responsibility of generating corresponding reports. 
+              This demanding workload elevates the risk of human error, potentially leading to treatment delays, increased healthcare costs, revenue loss, and operational inefficiencies. 
+              To address these challenges, we initiate a series of work on grounded <strong>Report Generation (AutoRG)</strong>, starting from the brain MRI interpretation system, 
+              which supports the delineation of brain structures, the localization of anomalies, and the generation of well-organized findings. We make contributions from the following aspects, 
+              first, on dataset construction, we release a comprehensive dataset encompassing segmentation masks of anomaly regions and manually authored reports, termed as <strong>RadGenome-Brain MRI</strong>. 
+              This data resource is intended to catalyze ongoing research and development in the field of AI-assisted report generation systems. Second, on system design, we propose <strong>AutoRG-Brain</strong>, 
+              the first brain MRI report generation system with pixel-level grounded visual clues. Third, for evaluation, we conduct quantitative assessments and human evaluations of 
+              brain structure segmentation, anomaly localization, and report generation tasks to provide evidence of its reliability and accuracy. 
+              This system has been integrated into real clinical scenarios, where radiologists were instructed to write reports based on our generated findings and anomaly segmentation masks. 
+              The results demonstrate that our system enhances the report-writing skills of junior doctors, aligning their performance more closely with senior doctors, thereby boosting overall productivity.
+            
+            </left></p>
+
+      <br><hr>
+      <center><h2> Architecture </h2> </center>
+      <p>
+        Our proposed <strong>AutoRG-Brain</strong> is the first regional brain MRI report generation system, that enables comprehensive segmentation of each anomaly region and generation of well-organized narratives, 
+        to describe observations in different anatomical regions as shown in the Figure below. In more detail, <strong>AutoRG-Brain</strong> consists of two components, namely an automatic ROI generation component, 
+        and a visual prompting guided report generation component. The former component provides auto-segmented region masks for detected anomalies or optionally human-prompted ROIs, serving as visual prompts for the latter report generation module, 
+        enabling the regional-related reports accordingly. The paired visual grounding results and regional radiology reports allows the clinicians to efficiently review and revise generated reports based on visual clues, 
+        significantly improving report writing efficiency. With the fast development of generalist medical AI (GMAI), our system can also serve as an agent to fill the gap of brain MRI interpretation within the GMAI framework.
+      </p>
+      <p>
+        <figure>
+          <img style="width:700px" src='./resources/architecture.png'>
+        </figure>
+      </p>
+      <!-- <p style="text-align:justify; text-justify:inter-ideograph;">
+            <left>
+              Existing evaluation metrics. We illustrate the limitations of current metrics. Blue boxes represent ground-truth reports; red and yellow boxes indicate correct and incorrect generated reports, respectively. 
+              The examples show that these metrics fail to identify opposite meanings and synonyms in the reports and are often disturbed by unrelated information.</left></p> -->
+      <br><hr>
+      <center><h2> Dataset </h2> </center>
+      <p>
+        We curate a dataset for grounded report generation, termed as RadGenome-Brain MRI with 3,408 multi-modal scans, reports, and ground truth anomaly segmentation masks, 
+        compiled from the publicly available datasets, for example, BraTS2021, BraTS-MEN, BraTS-MET, ISLES2022, and WMH, covering 6 modalities: T1-weighted, T2-weighted, DWI, 
+        T2-Flair, ADC, and T1-contrast. For each patient case, we ask the radiologists to write findings and impressions for the annotated anomaly regions. To our knowledge, 
+        this is the first open-source collection to provide paired images with detailed reports and anomaly segmentations. 
+        In the experiment, AutoRG-Brain showcases the effectiveness of segmentation as a preliminary step to provide grounded visual clues for image interpretation. 
+        We will release RadGenome-Brain MRI to the community, supporting future model training and evaluation.
+      </p>
+      <p>
+        <figure>
+          <img style="width:700px" src='./resources/dataset.png'>
+        </figure>
+      </p>
+      <p style="text-align:justify; text-justify:inter-ideograph;">
+            <left>
+              The training, validation, and testing split along with the annotation types are shown in the Table below. 
+              √ means having the ground truth label, √* means having the pseudo label.
+            </left></p>
+      <p>
+        <figure>
+          <img style="width:700px" src='./resources/dataset_split.png'>
+        </figure>
+      </p>
+      <br>
+
+      <hr>
+      <center> <h2> Results </h2> </center>
+      <p style="font-weight: bold; font-size: large;">
+        R1: Segmentation Module Evaluation
+      </p>
+      <p>
+        To our knowledge, our segmentation module is the first model that enables to segment both abnormalities and structures for multi-modal brain MRIs. Specifically, 
+        the training undergoes two stages, with the first self-supervised training stage on our in-house dataset (SSPH), 
+        and the second semi-supervised training stage on SSPH and 9 public datasets: BraTS2021, BraTS-MET, BraTS-MEN, ISLES2022, WMH, Hammers-n30r95, 
+        ATLAS, BraTS-PED, and BraTS-SSA. 
+      </p>
+      <p>
+        <figure>
+          <img style="width:700px" src='./resources/segmentation_eval_table.png'>
+          <figcaption>The comparison of AutoRG-Brain with baseline models on anomaly segmentation datasets BraTS2021,
+            ISLES2022, and brain structure segmentation dataset Hammers-n30r95. Ours-S1 is our segmentation module after the first self-supervised training stage and Ours-S2
+            is our segmentation module after the second semi-supervised training stage. We report the Dice Similarity Coefficient (DSC),
+            Precision (PRE) and Sensitivity (SE) scores. The best result is bolded, and the second best result is underlined</figcaption>
+        </figure>
+      </p>
+
+      <p>
+      <figure>
+        <img style="width:700px" src='./resources/anomaly_segmentation_example.png'>
+        <figcaption>Examples of anomaly segmentation of Sim2Real and Ours-S1, our segmentation module after the
+          first self-supervised training stage, on the BraTS2021 and ISLES2022 datasets.</figcaption>
+      </figure>
+    </p>
+    <p>
+      <figure>
+        <img style="width:700px" src='./resources/anatomy_segmentation.png'>
+        <figcaption>Comparison of our second-stage segmentation module (Ours-S2) with SOTA segmentation backbones and brain registration models on brain structure segmentation for multi-modal brain MRIs with real anomalies. 
+          We evaluate these models on four distinct datasets, BraTS2021, ISLES2022, RP3D-Brain, and SSPH. Due to the absence of ground truth brain structure segmentation on those datasets, 
+          we present the results based on human rankings on the left, where lower rankings indicate better outcomes.</figcaption>
+      </figure>
+    </p>
+
+    <p style="font-weight: bold; font-size: large;">
+      R2: Report Generation Module Evaluation
+    </p>
+    <p>
+      We evaluate the report generation module under three settings: (i) AutoRG-Brain-Global: generating global report with global image
+      feature; (ii) AutoRG-Brain-AutoSeg: generating global report by concatenating the grounded reports
+      for auto-segmented regions; (iii) AutoRG-Brain-Prompt: generating global report by concatenating the
+      grounded reports with human prompting, i.e., specify the region of interest on the structure segmentation
+      results. The Figure below shows the efficiency of grounded report generation compared to traditional global report generation.
+      Further human evaluation shows the reports from AutoRG-Brain demonstrate the fewest or no clinically significant errors or omissions.
+    </p>
+
+    <p>
+      <figure>
+        <img style="width:750px" src='./resources/three_settings.png'>
+        <figcaption>
+          The comparison results between the ground truth global report and global reports written by AutoRG-Brain-Global, AutoRG-Brain-AutoSeg, and AutoRG-Brain-Prompt. 
+          ROUGE-1, Bert-Score, RadGraph, RadCliQ, RaTEScore, BLEU-2, BLEU-3, and BLEU-4 are reported.
+        </figcaption>
+      </figure>
+    </p>
+
+    <p>
+    <figure>
+      <img style="width:700px" src='./resources/human_evaluation.png'>
+      <figcaption>
+        The global report generated by AutoRG-Brain-AutoSeg on clincal dataset SSPH is evaluated by three radiologists in four dimensions:
+        (i) Omission of finding; (ii) False prediction of finding; (iii) Incorrect location/position of finding; 
+        (iv) Incorrect description of lesion. The scores of four dimensions are shown on the left with the overall score shown on the right. 
+        The scoring is on a 4-point scale: 0 indicates more than three clinically significant errors or omissions, 1 indicates three clinically significant errors or 
+        omissions, 2 indicates two clinically significant errors or omissions, 3 indicates one clinically significant error or omission, and 4
+        indicates no clinically significant errors or omissions.
+      </figcaption>
+    </figure>
+  </p>
+
+  <p style="font-weight: bold; font-size: large;">
+    R3: Evaluation on Real Clinical Scenario.
+  </p>
+  <p>
+    To evaluate the ability of AutoRG-Brain in real clinical scenarios, we integrate our system into the radiology
+    daily routines to assess its usefulness in the report writing process. The result shows that the integration of AutoRG-Brain 
+    leads to significant improvements in report writing quality, especially on the most relevant metric to radiology report generation,
+    such as RadGraph, RadCliQ, and RaTEScore.
+  </p>
+  <p>
+  <figure>
+    <img style="width:750px" src='./resources/clinical_trail.png'>
+    <figcaption>
+      The comparison results between the ground truth report and reports written by AutoRG-Brain, doctors w.o
+      AutoRG-Brain, and doctors w. AutoRG-Brain detailed on various diseases (Heman.: Hemangioma, Infar.: Infarction, Hemor.:
+      Hemorrhage, Gliom.: Glioma, Menin.: Meningioma, Hydro.: Hydrocephalus, Metas.: Metastasis, Subdu: Sudural hematoma).
+      RadGraph, RadCliQ, Bert-Score, RaTEScore, BLEU-4, and ROUGE-1 are reported.
+    </figcaption>
+  </figure>
+</p>
+
+<br>
+<p>For more details, please refer to our <a href="https://arxiv.org/abs/2407.16684"> paper</a>.</p>
+<br>
+</body>
+</html>
